@@ -14,7 +14,7 @@ import './CSS/LoginSignup.css'
   const login=async()=>{
     let responseData;
     console.log("login exectued",formData);
-    await fetch(`http://localhost:4000/login`,{
+    await fetch("http://localhost:4000/login",{
         method:'POST',
         headers:{
           "Access-Control-Allow-Origin": "*",
@@ -41,7 +41,7 @@ import './CSS/LoginSignup.css'
       console.log("Signup exectued",formData);
       let responseData;
       
-      await fetch(`http://localhost:4000/signup`,{
+      await fetch("http://localhost:4000/signup",{
         method:'POST',
         headers:{
           "Access-Control-Allow-Origin": "*",

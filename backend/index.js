@@ -225,7 +225,7 @@ const fetchuser=async(req,res,next)=>{
     }
     else{
         try{
-            const data=jwt.verify(token,'secret_ecom');
+            const data=jwt.verify(token,process.env.JWT_SECRET);
             req.user=data.user;
             next();
         }catch(error){
@@ -263,10 +263,10 @@ app.post('/getcart',fetchuser,async(req,res)=>{
    res.json(userData.cartData);
 })
 
-app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "frontend", "build")));
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-    });
+// app.get("/", (req, res) => {
+//     app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+//     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+//     });
     
 app.listen(port,(error)=>{
      if(!error){

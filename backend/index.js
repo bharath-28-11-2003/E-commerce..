@@ -1,4 +1,6 @@
-const port = 4000;
+
+
+
 const express= require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -6,14 +8,15 @@ const jwt=require("jsonwebtoken");
 const multer=require("multer");
 const path=require("path");
 const cors= require("cors");
+require("dotenv").config();
 const { ppid } = require("process");
 
 
 app.use(express.json());
 app.use(cors());
-
+const port = 4000;
 //Database connection with MongoDb...
-mongoose.connect("mongodb+srv://tinkugorita:Tinku28112003@cluster0.6rmdw6r.mongodb.net/e-commerce");
+mongoose.connect(process.env.MONGO_URL);
 //API creation
 app.get("/",(req,res)=>{
     res.send("Express app is running");
@@ -169,7 +172,7 @@ app.post('/signup',async(req,res)=>{
         id:user.id
     }
   }
-  const token=jwt.sign(data,'secret_ecom');
+  const token=jwt.sign(data,process.env.JWT_SECRET);
   res.json({success:true,token})
   console.log("Saved");
 })
